@@ -63,7 +63,7 @@ const EnterQuiz = () => {
                     <GridLoader color='#00bfa5' size={50} />
                 </Box>
                 :
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                     <Box sx={{ width: '50%' }}>
                         <img src={welcome} alt="" width='100%' />
                     </Box>
