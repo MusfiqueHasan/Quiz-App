@@ -53,9 +53,12 @@ const QuestionPage = () => {
                     return { id: index, status: 'skipped' }
                 }
             });
+            let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            let date = new Date()
+            let time = date.toLocaleString('en-US', options)
             totalQuestion = result.length;
             const allQuizResult = JSON.parse(localStorage.getItem('allQuizResult')) || [];
-            allQuizResult.push({correct, incorrect, skipped, totalQuestion});
+            allQuizResult.push({ correct, incorrect, skipped, totalQuestion, time });
             localStorage.setItem('result', JSON.stringify(result))
             localStorage.setItem('allQuizResult', JSON.stringify(allQuizResult))
             localStorage.removeItem('answers')
@@ -131,11 +134,9 @@ const QuestionPage = () => {
                         <Chip
                             sx={{ bgcolor: '#e0f2f1', color: '#00bfa5', fontWeight: 'bold', paddingInline: 1, marginRight: 1, cursor: 'pointer' }}
                             onClick={handleNext}
-                            disabled={currentValue?.length < 1}
-                            label={
-                                <span>{totalQuestions === parseInt(id) ? 'Submit' : 'Next'}
-                                </span>
-                            }
+                            disabled={currentValue?.length < 1 && !(totalQuestions === parseInt(id))}
+                            label={<span>{totalQuestions === parseInt(id) ? 'Submit' : 'Next'}
+                            </span>}
 
                         />
                     </Box>
